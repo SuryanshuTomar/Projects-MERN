@@ -1,14 +1,13 @@
 const router = require("express").Router();
-const MovieModel = require("../models/Movie");
-const moviesData = require("../config/movies.json");
+const Movie = require("../models/Movie");
+const movies = require("../config/movies.json");
 
 router.get("/movies", async (req, res) => {
 	try {
 		const page = parseInt(req.query.page) - 1 || 0;
 		const limit = parseInt(req.query.limit) || 5;
 		const search = req.query.search || "";
-
-		let sort = req.query.search || "rating";
+		let sort = req.query.sort || "rating";
 		let genre = req.query.genre || "All";
 
 		const genreOptions = [
@@ -19,7 +18,7 @@ router.get("/movies", async (req, res) => {
 			"Crime",
 			"Adventure",
 			"Thriller",
-			"Sci-Fi",
+			"Sci-fi",
 			"Music",
 			"Family",
 		];
@@ -27,25 +26,25 @@ router.get("/movies", async (req, res) => {
 		genre === "All"
 			? (genre = [...genreOptions])
 			: (genre = req.query.genre.split(","));
-
 		req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
 
 		let sortBy = {};
 		if (sort[1]) {
-			sortBy[(sort[0] = sort[1])];
+			sortBy[sort[0]] = sort[1];
 		} else {
 			sortBy[sort[0]] = "asc";
 		}
 
-		const movies = await MovieModel.find({
+		const movies = await Movie.find({
 			name: { $regex: search, $options: "i" },
 		})
 			.where("genre")
 			.in([...genre])
 			.sort(sortBy)
-			.skip(page * limit);
+			.skip(page * limit)
+			.limit(limit);
 
-		const total = await MovieModel.countDocuments({
+		const total = await Movie.countDocuments({
 			genre: { $in: [...genre] },
 			name: { $regex: search, $options: "i" },
 		});
@@ -55,29 +54,28 @@ router.get("/movies", async (req, res) => {
 			total,
 			page: page + 1,
 			limit,
-			movies,
 			genres: genreOptions,
+			movies,
 		};
 
 		res.status(200).json(response);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ error: true, message: "Internal Server Error !" });
+		res.status(500).json({ error: true, message: "Internal Server Error" });
 	}
 });
 
-// For Inserting the movies.json data into MongoDB database.
 // const insertMovies = async () => {
-// 	try {
-// 		const docs = await MovieModel.insertMany(moviesData);
-// 		return Promise.resolve(docs);
-// 	} catch (err) {
-// 		return Promise.reject(err);
-// 	}
+//     try {
+//         const docs = await Movie.insertMany(movies);
+//         return Promise.resolve(docs);
+//     } catch (err) {
+//         return Promise.reject(err)
+//     }
 // };
 
 // insertMovies()
-// 	.then((docs) => console.log(docs))
-// 	.catch((err) => console.log(err));
+//     .then((docs) => console.log(docs))
+//     .catch((err) => console.log(err))
 
 module.exports = router;
