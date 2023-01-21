@@ -1,6 +1,8 @@
 // imports
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+
 const workoutRoutes = require("./routes/workouts.routes");
 
 // Express app
@@ -25,9 +27,19 @@ app.get("/", (req, res) => {
 // Routes Middlewares
 app.use("/api/workouts", workoutRoutes);
 
-// Listen to server
-const PORT = process.env.PORT || 3000;
-const HOSTNAME = process.env.HOSTNAME || "localhost";
-app.listen(PORT, HOSTNAME, () => {
-	console.log(`Listening to server on PORT: ${PORT}`);
-});
+// Connect to Mongo DB
+mongoose
+	.set("strictQuery", true)
+	.connect(process.env.MONGO_URI)
+	.then(() => {
+		// Listen to server only if we are connected to the DB
+		const PORT = process.env.PORT || 3000;
+		const HOSTNAME = process.env.HOSTNAME || "localhost";
+		app.listen(PORT, HOSTNAME, () => {
+			console.log(`Listening to server on PORT: ${PORT}`);
+		});
+	})
+	.catch((error) => {
+		console.log("Something Went Wrong!!!");
+		console.log(error);
+	});
