@@ -5,14 +5,14 @@
 	--primary: #1aac83;
 	--error: #e7195a;
 
-	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 16px;
+	font-family: "Poppins", Inter, Avenir, Helvetica, Arial, sans-serif;
+	/* font-size: 16px;
 	line-height: 24px;
-	font-weight: 400;
+	font-weight: 400; */
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	background-color: #343434;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -22,29 +22,29 @@
 }
 
 body {
-  background: #f1f1f1;
-  margin: 0;
-  font-family: "Poppins";
+	background: #343434;
+	margin: 0;
 }
 header {
-  background: #fff;
+	background: #141414;
 }
 header .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 10px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 header a {
-  color: #333;
-  text-decoration: none;
+	color: #ccc;
+	text-decoration: none;
+	cursor: pointer;
 }
-.pages{
-  max-width: 1400px;
-  padding: 20px;
-  margin: 0 auto;
+.pages {
+	max-width: 1400px;
+	padding: 20px 50px;
+	margin: 0 auto;
 }
 
 @media (prefers-color-scheme: light) {
