@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const workoutRoutes = require("./routes/workouts.routes");
 
@@ -10,6 +11,11 @@ const app = express();
 
 // Global Middlewares
 app.use(express.json()); // json parser
+app.use(
+	cors({
+		origin: "http://127.0.0.1:5173",
+	})
+);
 
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
