@@ -83,7 +83,39 @@ const deleteWorkout = async (req, res) => {
 };
 
 // update a workout
-const updateWorkout = async (req, res) => {};
+const updateWorkout = async (req, res) => {
+	const { id } = req.params;
+
+	// check if the id is a valid mongo id or not
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(404).json({
+			status: "failed",
+			error: `No Such Workout Exists! :  ${id}`,
+		});
+	}
+
+	try {
+		const updateWorkout = await Workout.findOneAndUpdate(
+			{ _id: id },
+			{
+				...req.body,
+			},
+			{ new: true }
+		);
+		if (!updateWorkout) {
+			return res.status(404).json({
+				status: "failed",
+				error: `Workout with id: ${id} does not exist !`,
+			});
+		}
+		res.status(200).json({ status: "success", data: updateWorkout });
+	} catch (error) {
+		res.status(400).json({
+			status: "failed",
+			error: error.message,
+		});
+	}
+};
 
 // exports
 module.exports = {
