@@ -1,16 +1,22 @@
+// imports
+// packages
 import React, { useState, useEffect } from "react";
-import { excerciseFetch } from "../axios/ExcerciseFetch";
 
+// pages and componenets
+import { excerciseFetch } from "../axios/ExcerciseFetch";
+import WorkoutDetails from "../components/WorkoutDetails";
+
+// component
 function Homepage() {
 	const [workouts, setWorkouts] = useState(null);
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
 			const response = await excerciseFetch("/workouts");
-			const data = response.data;
+			const dataObj = response.data;
 
-			if (data.status === "success") {
-				setWorkouts(data.data);
+			if (dataObj.status === "success") {
+				setWorkouts(dataObj.data);
 			}
 		};
 		fetchWorkouts();
@@ -21,7 +27,7 @@ function Homepage() {
 			<div className="workouts">
 				{workouts &&
 					workouts.map((workout) => (
-						<p key={workout._id}>{workout.title}</p>
+						<WorkoutDetails key={workout._id} workout={workout} />
 					))}
 			</div>
 		</div>
