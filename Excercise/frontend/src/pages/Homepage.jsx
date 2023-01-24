@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 // pages and componenets
 import { excerciseFetch } from "../axios/ExcerciseFetch";
 import WorkoutDetails from "../components/WorkoutDetails";
+import WorkoutForm from "../components/WorkoutForm";
 
 // component
 function Homepage() {
@@ -12,7 +13,7 @@ function Homepage() {
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
-			const response = await excerciseFetch("/workouts");
+			const response = await excerciseFetch.get("/workouts");
 			const dataObj = response.data;
 
 			if (dataObj.status === "success") {
@@ -30,6 +31,7 @@ function Homepage() {
 						<WorkoutDetails key={workout._id} workout={workout} />
 					))}
 			</div>
+         <WorkoutForm />
 		</div>
 	);
 }
