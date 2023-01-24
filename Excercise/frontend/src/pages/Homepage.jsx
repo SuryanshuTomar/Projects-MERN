@@ -1,15 +1,16 @@
 // imports
 // packages
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 // pages and componenets
-import { excerciseFetch } from "../axios/ExcerciseFetch";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { excerciseFetch } from "../axios/ExcerciseFetch";
+import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 
 // component
 function Homepage() {
-	const [workouts, setWorkouts] = useState(null);
+	const { workouts, dispatchWorkouts } = useWorkoutContext();
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
@@ -17,11 +18,11 @@ function Homepage() {
 			const dataObj = response.data;
 
 			if (dataObj.status === "success") {
-				setWorkouts(dataObj.data);
+				dispatchWorkouts({ type: "SET_WORKOUTS", payload: dataObj.data });
 			}
 		};
 		fetchWorkouts();
-	}, []);
+	}, [workouts]);
 
 	return (
 		<div className="home">
@@ -31,7 +32,7 @@ function Homepage() {
 						<WorkoutDetails key={workout._id} workout={workout} />
 					))}
 			</div>
-         <WorkoutForm />
+			<WorkoutForm />
 		</div>
 	);
 }
