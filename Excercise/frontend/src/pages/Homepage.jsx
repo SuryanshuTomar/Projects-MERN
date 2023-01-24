@@ -17,12 +17,12 @@ function Homepage() {
 			const response = await excerciseFetch.get("/workouts");
 			const dataObj = response.data;
 
-			if (dataObj.status === "success") {
+			if (response.statusText === "OK") {
 				dispatchWorkouts({ type: "SET_WORKOUTS", payload: dataObj.data });
 			}
 		};
 		fetchWorkouts();
-	}, [workouts]);
+	}, []);
 
 	return (
 		<div className="home">
