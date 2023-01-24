@@ -2,31 +2,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 :root {
-	--primary: #1aac83;
+	--primary: #837e71;
+	--primary2: #191f22;
+	--secondary: #45525f;
+	--secondary2: #dcd5c9;
+	--secondary3: #57585e;
 	--error: #e7195a;
 
 	font-family: "Poppins", Inter, Avenir, Helvetica, Arial, sans-serif;
-	/* font-size: 16px;
-	line-height: 24px;
-	font-weight: 400; */
-
-	color-scheme: light dark;
+	/* color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #343434;
+	background-color: #343434; */
 
-	font-synthesis: none;
+	/* font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%; */
 }
 
+/* homepage */
 body {
-	background: #343434;
+	background: var(--primary);
 	margin: 0;
 }
 header {
-	background: #141414;
+	background: #191f22;
 }
 header .container {
 	max-width: 1400px;
@@ -37,7 +38,7 @@ header .container {
 	justify-content: space-between;
 }
 header a {
-	color: #ccc;
+	color: var(--primary);
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -47,9 +48,46 @@ header a {
 	margin: 0 auto;
 }
 
+.home {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: 100px;
+}
+
+/* workout-details */
+.workout-details {
+	background: var(--primary2);
+	border-radius: 4px;
+	margin: 20px auto;
+	padding: 20px;
+	position: relative;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+.workout-details h4 {
+	margin: 0 0 10px 0;
+	font-size: 1.2em;
+	color: var(--primary);
+}
+.workout-details p {
+	margin: 0;
+	font-size: 0.9em;
+	color: var(--secondary2);
+}
+
+.workout-details span {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	background: #f1f1f1;
+	padding: 6px;
+	border-radius: 50%;
+	color: #ccc;
+}
+/* 
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
 		background-color: #ffffff;
 	}
-}
+} */
