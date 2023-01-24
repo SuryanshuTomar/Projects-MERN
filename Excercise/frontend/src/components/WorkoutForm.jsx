@@ -4,8 +4,11 @@ import React, { useState } from "react";
 
 // axios
 import { excerciseFetch } from "../axios/ExcerciseFetch";
+import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 
 function WorkoutForm() {
+	const { dispatchWorkouts } = useWorkoutContext();
+
 	const [title, setTitle] = useState("");
 	const [reps, setReps] = useState(0);
 	const [load, setLoad] = useState(0);
@@ -26,13 +29,16 @@ function WorkoutForm() {
 					},
 				}
 			);
-			console.log(response);
+
 			setTitle("");
 			setReps(0);
 			setLoad(0);
 			setError(null);
+			dispatchWorkouts({
+				type: "CREATE_WORKOUT",
+				payload: response.data.data,
+			});
 		} catch (error) {
-			console.log(error.response.data.error);
 			setError(error.response.data.error);
 		}
 	};
