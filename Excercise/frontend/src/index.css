@@ -83,7 +83,7 @@ header a {
 	cursor: pointer;
 	background: var(--secondary);
 	padding: 5px;
-	border-radius: 10%;
+	border-radius: 50%;
 	color: var(--secondary2);
 }
 
@@ -127,7 +127,7 @@ div.error {
 }
 
 input.error {
-	border: 1px solid var(--error );
+	border: 1px solid var(--error);
 }
 
 /* 
