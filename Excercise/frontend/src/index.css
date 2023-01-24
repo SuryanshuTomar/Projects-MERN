@@ -81,10 +81,10 @@ header a {
 	top: 20px;
 	right: 20px;
 	cursor: pointer;
-	background: #f1f1f1;
-	padding: 6px;
-	border-radius: 50%;
-	color: #ccc;
+	background: var(--secondary);
+	padding: 5px;
+	border-radius: 10%;
+	color: var(--secondary2);
 }
 
 /* new workout form */
