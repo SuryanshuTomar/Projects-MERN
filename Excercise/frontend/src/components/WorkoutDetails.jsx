@@ -1,6 +1,7 @@
 // imports
 // packages
 import React from "react";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 // axios
 import { excerciseFetch } from "../axios/ExcerciseFetch";
@@ -25,8 +26,14 @@ function WorkoutDetails({ workout }) {
 			<p>
 				<strong>Reps: </strong> {workout.reps}
 			</p>
-			<p>{workout.createdAt}</p>
-			<span onClick={clickHandler}>Delete</span>
+			<p>
+				{formatDistanceToNow(new Date(workout.createdAt), {
+					addSuffix: true,
+				})}
+			</p>
+			<span className="material-symbols-rounded" onClick={clickHandler}>
+				Delete
+			</span>
 		</div>
 	);
 }
