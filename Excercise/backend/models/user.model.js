@@ -1,6 +1,7 @@
 // imports
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 
 // Get the mongoose Schema Class
 const Schema = mongoose.Schema;
@@ -20,7 +21,23 @@ const userSchema = new Schema({
 
 // Static Signup Method
 userSchema.statics.signup = async function (email, password) {
-	// check if email already exists in db
+	// Email And Password Validation
+	// 1. check if email and password are not empty
+	if (!email || !password) {
+		throw new Error("All fields must be filled!");
+	}
+
+	// 2. validate email
+	if (!validator.isEmail(email)) {
+		throw new Error("Email is not Valid!");
+	}
+
+	// 2. validate password
+	if (!validator.isStrongPassword(password)) {
+		throw new Error("Password is not strong enough!");
+	}
+
+	// Check if email already exists in db
 	const emailExist = await this.findOne({ email });
 	if (emailExist) throw new Error("email already exists!");
 

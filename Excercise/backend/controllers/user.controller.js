@@ -15,7 +15,7 @@ const signupUser = async (req, res) => {
 	try {
 		const user = await User.signup(email, password);
 
-		res.status(200).json({ status: "success", user });
+		res.status(200).json({ status: "success", email, user });
 	} catch (error) {
 		res.status(400).json({ status: "failed", error: error.message });
 	}
