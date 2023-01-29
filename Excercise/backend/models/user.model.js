@@ -19,7 +19,7 @@ const userSchema = new Schema({
 });
 
 // Static Signup Method
-userSchema.statics.signup = async (email, password) => {
+userSchema.statics.signup = async function (email, password) {
 	// check if email already exists in db
 	const emailExist = await this.findOne({ email });
 	if (emailExist) throw new Error("email already exists!");
