@@ -1,5 +1,5 @@
 // imports
-const User = require();
+const User = require("../models/user.model");
 
 // Login User Logic
 const loginUser = async (req, res) => {
