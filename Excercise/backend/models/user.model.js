@@ -39,7 +39,7 @@ userSchema.statics.signup = async function (email, password) {
 };
 
 // Create a model from the userSchema
-const model = mongoose.Model("User", userSchema);
+const model = mongoose.model("User", userSchema);
 
 // exports
 module.exports = model;
