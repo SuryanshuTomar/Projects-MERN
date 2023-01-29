@@ -3,12 +3,12 @@ require("dotenv").config(); // load all the .env file variables to the process.e
 // require("./db/connect"); // it will execute the mongoose.connect() method automaically
 const connectDB = require("./db/connect");
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 
 const workoutRoutes = require("./routes/workouts.routes");
 const userRoutes = require("./routes/user.routes");
 const notFound = require("./middleware/not-found");
+const errorHandlerMiddlerware = require("./middleware/error-handler");
 
 // Express app
 const app = express();
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/user", userRoutes);
 app.use(notFound);
+app.use(errorHandlerMiddlerware);
 
 // Connect to Mongo DB
 // async because connectDB returns a thenable function
