@@ -1,11 +1,14 @@
 // imports
-require("dotenv").config();
+require("dotenv").config(); // load all the .env file variables to the process.env
+// require("./db/connect"); // it will execute the mongoose.connect() method automaically
+const connectDB = require("./db/connect");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
 const workoutRoutes = require("./routes/workouts.routes");
 const userRoutes = require("./routes/user.routes");
+const notFound = require("./middleware/not-found");
 
 // Express app
 const app = express();
@@ -16,7 +19,7 @@ app.use(
 	cors({
 		origin: ["http://127.0.0.1:5173", "http://localhost:5173"],
 	})
-);
+); // add orgin for cors
 
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
@@ -34,20 +37,26 @@ app.get("/", (req, res) => {
 // Routes Middlewares
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/user", userRoutes);
+app.use(notFound);
 
 // Connect to Mongo DB
-mongoose
-	.set("strictQuery", true)
-	.connect(process.env.MONGO_URI)
-	.then(() => {
+// async because connectDB returns a thenable function
+// note: mongoose.methods() are thenable function
+const startServer = async () => {
+	try {
+		// connect
+		await connectDB(process.env.MONGO_URI);
+
 		// Listen to server only if we are connected to the DB
 		const PORT = process.env.PORT || 3000;
 		const HOSTNAME = process.env.HOSTNAME || "localhost";
 		app.listen(PORT, HOSTNAME, () => {
 			console.log(`Listening to server on PORT: ${PORT}`);
 		});
-	})
-	.catch((error) => {
+	} catch (error) {
 		console.log("Something Went Wrong!!!");
 		console.log(error);
-	});
+	}
+};
+
+startServer();
