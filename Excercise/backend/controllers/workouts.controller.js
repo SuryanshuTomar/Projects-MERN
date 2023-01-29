@@ -62,7 +62,7 @@ const createWorkout = async (req, res) => {
 		const workout = await Workout.create({ title, reps, load });
 		res.status(201).json({ status: "success", data: workout });
 	} catch (error) {
-		res.status(404).json({ status: "failed", error: error.message });
+		res.status(500).json({ status: "failed", error: error.message });
 	}
 };
 
