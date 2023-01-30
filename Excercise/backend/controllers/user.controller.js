@@ -27,7 +27,21 @@ const createToken = (_id) => {
 
 // Login User Logic
 const loginUser = async (req, res) => {
-	res.status(200).json({ status: "success", message: "Logged In!!" });
+	const { email, password } = req.body;
+
+	// try-catch because we are using static login method
+	// which might throw an error
+	try {
+		// calling the static method login we created in user.model
+		const user = await User.login(email, password);
+
+		// create a token
+		const token = createToken(user._id);
+
+		res.status(200).json({ status: "success", email, token });
+	} catch (error) {
+		res.status(400).json({ status: "failed", error: error.message });
+	}
 };
 
 // Signup User Logic
