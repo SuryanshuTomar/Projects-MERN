@@ -151,12 +151,12 @@ form.login {
 
 form.signup > button,
 form.login > button {
-	color: var(--primary);
-	background-color: var(--secondary3);
-}
-
-form.signup > button:hover,
-form.login > button:hover {
 	color: var(--secondary2);
 	background-color: var(--secondary);
+}
+
+form.signup > button.loading,
+form.login > button.loading {
+	color: var(--primary);
+	background-color: var(--secondary3);
 }
