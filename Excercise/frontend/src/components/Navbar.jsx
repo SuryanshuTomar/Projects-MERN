@@ -8,6 +8,12 @@ function Navbar() {
 				<NavLink to="/">
 					<h1>Excercise</h1>
 				</NavLink>
+				<nav>
+					<div>
+						<NavLink to="/login">Login</NavLink>
+						<NavLink to="/signup">Signup</NavLink>
+					</div>
+				</nav>
 			</div>
 		</header>
 	);
