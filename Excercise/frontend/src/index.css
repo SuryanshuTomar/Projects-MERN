@@ -38,7 +38,7 @@ header .container {
 	justify-content: space-between;
 }
 header a {
-	color: var(--primary);
+	color: var(--secondary2);
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -130,10 +130,33 @@ input.error {
 	border: 1px solid var(--error);
 }
 
-/* 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-} */
+/* navbar */
+nav {
+	display: flex;
+	align-items: center;
+}
+nav a {
+	margin-left: 10px;
+}
+/* auth forms */
+form.signup,
+form.login {
+	max-width: 400px;
+	margin: 40px auto;
+	padding: 20px;
+	color: var(--primary);
+	background: var(--primary2);
+	border-radius: 4px;
+}
+
+form.signup > button,
+form.login > button {
+	color: var(--primary);
+	background-color: var(--secondary3);
+}
+
+form.signup > button:hover,
+form.login > button:hover {
+	color: var(--secondary2);
+	background-color: var(--secondary);
+}
