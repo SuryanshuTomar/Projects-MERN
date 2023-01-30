@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
 
 const Signup = () => {
+	const { signup, isLoading, error } = useSignup();
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -8,6 +11,7 @@ const Signup = () => {
 		event.preventDefault();
 
 		console.log(email, password);
+		await signup(email, password);
 	};
 
 	return (
@@ -29,7 +33,10 @@ const Signup = () => {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button>Sign Up</button>
+			<button className={isLoading ? "loading" : ""} disabled={isLoading}>
+				Sign Up
+			</button>
+			{error && <div className="error">{JSON.stringify(error)}</div>}
 		</form>
 	);
 };
