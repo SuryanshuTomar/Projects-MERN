@@ -1,9 +1,9 @@
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
-	const logout = () => {
-		const { dispatch } = useAuthContext();
+	const { dispatch } = useAuthContext();
 
+	const logout = () => {
 		// Remove user token from the local storage
 		localStorage.removeItem("user");
 
