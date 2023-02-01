@@ -19,6 +19,10 @@ const workoutSchema = new Schema(
 			type: Number,
 			required: [true, "Load weight required !"],
 		},
+		user_id: {
+			type: String,
+			required: true,
+		},
 	},
 	{
 		timestamps: true,
