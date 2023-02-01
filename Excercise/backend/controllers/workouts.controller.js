@@ -7,7 +7,9 @@ const { createCustomError } = require("../errors/custom-error");
 
 // Get all workouts
 const getAllWorkout = asyncWrapper(async (req, res, next) => {
-	const allWorkouts = await Workout.find({}).sort({ createdAt: -1 });
+	const user_id = req.user._id;
+
+	const allWorkouts = await Workout.find({ user_id }).sort({ createdAt: -1 });
 	res.status(200).json({ status: "success", data: allWorkouts });
 });
 
@@ -47,7 +49,8 @@ const createWorkout = asyncWrapper(async (req, res, next) => {
 		);
 	}
 
-	const workout = await Workout.create({ title, reps, load });
+	const user_id = req.user._id;
+	const workout = await Workout.create({ title, reps, load, user_id });
 	res.status(201).json({ status: "success", data: workout });
 });
 
