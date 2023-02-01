@@ -177,3 +177,7 @@ form.login > button.loading {
 span {
 	color: var(--primary);
 }
+
+h2 {
+	color: var(--primary2)
+}
