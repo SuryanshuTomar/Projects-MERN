@@ -1,7 +1,8 @@
+import cors from "cors";
 import { config } from "dotenv";
 import express from "express";
 import { connectDB } from "./db/connect.js";
-import cors from "cors";
+import TransactionRouter from "./routes/transaction.routes.js";
 
 // configs
 const app = express();
@@ -18,12 +19,8 @@ app.get("/", (req, res) => {
 	});
 });
 
-app.post("/api/transactions", (req, res) => {
-	console.log(req.body);
-	res.status(200).json({
-		msg: "Form Data Recieved...",
-	});
-});
+// api router middlewares
+app.use("/api/v1", TransactionRouter);
 
 // start
 async function startServer() {
