@@ -71,7 +71,7 @@ const Navbar = () => {
 					</SearchContainer>
 				</Left>
 				<Center>
-					<Logo>Matrix</Logo>
+					<Logo>.MATRIX.</Logo>
 				</Center>
 				<Right>
 					<MenuItem>REGISTER</MenuItem>
