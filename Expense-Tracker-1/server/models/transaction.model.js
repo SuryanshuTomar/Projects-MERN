@@ -30,7 +30,5 @@ const transactionSchema = new Schema(
 );
 
 // Create the model using the transactionSchema
-export const transactionModel = new mongoose.model(
-	"Transaction",
-	transactionSchema
-);
+const TransactionModel = new mongoose.model("Transaction", transactionSchema);
+export default TransactionModel;
