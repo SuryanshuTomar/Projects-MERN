@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { expenseFetch } from "../axios/ExpenseFetch";
+import { postTransaction } from "../axios/ExpenseFetch";
 
 const TransactionForm = () => {
 	const [formData, setFormData] = useState({
@@ -20,11 +20,7 @@ const TransactionForm = () => {
 
 		console.log(formData);
 		try {
-			const response = await expenseFetch.post("/transactions", formData, {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			const response = await postTransaction(formData);
 			console.log(response.data);
 		} catch (error) {
 			console.log(error);
@@ -46,6 +42,7 @@ const TransactionForm = () => {
 					required
 					type="number"
 					name="amount"
+					min="0"
 					id="transactionAmount"
 					aria-label="Enter the transaction amount"
 					placeholder="Enter the transaction amount..."
