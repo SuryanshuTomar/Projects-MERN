@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getAllTransactions } from "../axios/ExpenseFetch";
+import {
+	getTransactions,
+	selectAllTransactions,
+} from "../features/TransactionSlice";
 import TransactionTable from "./TransactionTable";
 
 const Title = styled.h3`
@@ -16,27 +20,26 @@ const Container = styled.div`
 `;
 
 const Transactions = () => {
-	const [allTransactions, setAllTransactions] = useState([]);
+	const {
+		data: transactions,
+		error,
+		status,
+	} = useSelector(selectAllTransactions);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		fetchTransactions();
-		console.log("called");
+		dispatch(getTransactions());
 	}, []);
-
-	async function fetchTransactions() {
-		console.log("called");
-		try {
-			const response = await getAllTransactions();
-			setAllTransactions(response.data.data);
-		} catch (error) {
-			console.log(error);
-		}
-	}
 
 	return (
 		<Container>
 			<Title>All Transactions</Title>
-			<TransactionTable allTransactions={allTransactions} />
+			<TransactionTable
+				allTransactions={transactions}
+				error={error}
+				status={status}
+			/>
 		</Container>
 	);
 };

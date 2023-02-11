@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { postTransaction } from "../axios/ExpenseFetch";
+import { addNewTransaction } from "../features/TransactionSlice";
 
-const Button = styled.div`
+const Button = styled.button`
 	background-image: linear-gradient(
 		to right,
 		#e84855,
@@ -18,11 +19,12 @@ const Button = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-width: 5px;
+	border: none;
 	border-radius: 5px;
 	transition: all 0.5s;
 	color: #403f4c;
 	z-index: 1;
+	cursor: pointer;
 
 	&:hover {
 		box-shadow: 5px 5px 5px 1px rgb(189, 195, 199);
@@ -90,13 +92,11 @@ const Input = styled.input`
 	&:required:invalid::-webkit-datetime-edit {
 		color: rgb(191, 191, 191);
 	}
-
-	/* &:focus::-webkit-datetime-edit {
-		color: black !important;
-	} */
 `;
 
 const TransactionForm = () => {
+	const dispatch = useDispatch();
+
 	const [formData, setFormData] = useState({
 		amount: "",
 		description: "",
@@ -105,6 +105,7 @@ const TransactionForm = () => {
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
+		dispatch(addNewTransaction(formData));
 
 		// Reset Form Data on Submission
 		setFormData({
@@ -112,14 +113,6 @@ const TransactionForm = () => {
 			description: "",
 			date: "",
 		});
-
-		console.log(formData);
-		try {
-			const response = await postTransaction(formData);
-			console.log(response.data);
-		} catch (error) {
-			console.log(error);
-		}
 	};
 
 	const onChangeHandler = (event) => {
@@ -174,7 +167,7 @@ const TransactionForm = () => {
 				/>
 			</div>
 
-			<Button>Submit</Button>
+			<Button type="submit">Submit</Button>
 		</Form>
 	);
 };
