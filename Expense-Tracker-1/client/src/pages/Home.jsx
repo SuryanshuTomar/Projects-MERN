@@ -1,7 +1,7 @@
-import TransactionForm from "../components/TransactionForm";
-import Transactions from "../components/Transactions";
 import styled from "styled-components";
 import TransactionChart from "../components/TransactionChart";
+import TransactionForm from "../components/TransactionForm";
+import Transactions from "../components/Transactions";
 
 const Container = styled.div`
 	display: flex;
