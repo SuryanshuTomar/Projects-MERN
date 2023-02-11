@@ -32,3 +32,32 @@ export const getAllTransactions = async (req, res, next) => {
 		res.status(500).json({ status: "Failed", message: error.message });
 	}
 };
+
+export const deleteTransaction = async (req, res, next) => {
+	const { id } = req.params;
+	console.log(id);
+	try {
+		const deletedTransaction = await TransactionModel.findByIdAndDelete(id);
+		res.status(200).json({ status: "Success", data: deletedTransaction });
+	} catch (error) {
+		res.status(500).json({ status: "Failed", message: error.message });
+	}
+};
+
+export const updateTransaction = async (req, res, next) => {
+	const data = req.body;
+	console.log(data);
+	try {
+		const updatedTransaction = await TransactionModel.findOneAndUpdate(
+			{
+				_id: data._id,
+			},
+			data,
+			{ new: true, runValidators: true }
+		);
+		console.log(updatedTransaction);
+		res.status(200).json({ status: "Success", data: updatedTransaction });
+	} catch (error) {
+		res.status(500).json({ status: "Failed", message: error.message });
+	}
+};
