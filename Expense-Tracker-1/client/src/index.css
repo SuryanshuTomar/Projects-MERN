@@ -3,12 +3,31 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	color: #403f4c;
+}
+
+/* body {
+	background-color: #efbcd5;
+} */
+
+a {
+	text-decoration: none;
+	margin-left: 2rem;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+	color: #f9dc5c;
 }
