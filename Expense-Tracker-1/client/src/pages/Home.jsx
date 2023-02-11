@@ -1,12 +1,33 @@
 import TransactionForm from "../components/TransactionForm";
 import Transactions from "../components/Transactions";
+import styled from "styled-components";
+import TransactionChart from "../components/TransactionChart";
+
+const Container = styled.div`
+	display: flex;
+	background-color: blue;
+	flex-direction: column;
+	align-items: center;
+`;
+
+const Wrapper = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	justify-content: space-between;
+	background-color: yellow;
+	padding: 0.5rem;
+`;
 
 const Home = () => {
 	return (
-		<div>
+		<Container>
+			<Wrapper>
+				<TransactionChart />
+				<TransactionForm />
+			</Wrapper>
 			<Transactions />
-			<TransactionForm />
-		</div>
+		</Container>
 	);
 };
 export default Home;
