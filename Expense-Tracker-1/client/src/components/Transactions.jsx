@@ -1,5 +1,19 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { getAllTransactions } from "../axios/ExpenseFetch";
+import TransactionTable from "./TransactionTable";
+
+const Title = styled.h3`
+	text-align: center;
+	margin: 1rem 0;
+`;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
 
 const Transactions = () => {
 	const [allTransactions, setAllTransactions] = useState([]);
@@ -20,28 +34,11 @@ const Transactions = () => {
 	}
 
 	return (
-		<section>
-			<h1>All Transactions </h1>
-			<table>
-				<thead>
-					<tr>
-						<th>Amount</th>
-						<th>Description</th>
-						<th>Date</th>
-					</tr>
-				</thead>
-
-				{allTransactions.map((traxn) => (
-					<tbody key={traxn._id}>
-						<tr>
-							<td>{traxn.amount}</td>
-							<td>{traxn.description}</td>
-							<td>{traxn.date}</td>
-						</tr>
-					</tbody>
-				))}
-			</table>
-		</section>
+		<Container>
+			<Title>All Transactions</Title>
+			<TransactionTable allTransactions={allTransactions} />
+		</Container>
 	);
 };
+
 export default Transactions;
