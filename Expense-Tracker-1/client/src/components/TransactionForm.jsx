@@ -1,5 +1,100 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { postTransaction } from "../axios/ExpenseFetch";
+
+const Button = styled.div`
+	background-image: linear-gradient(
+		to right,
+		#e84855,
+		#f0667c,
+		#f384a0,
+		#f2a0bd,
+		#efbcd5
+	);
+	position: relative;
+	height: 2rem;
+	width: 5rem;
+	margin: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-width: 5px;
+	border-radius: 5px;
+	transition: all 0.5s;
+	color: #403f4c;
+	z-index: 1;
+
+	&:hover {
+		box-shadow: 5px 5px 5px 1px rgb(189, 195, 199);
+	}
+
+	&::before {
+		position: absolute;
+		content: "";
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border-radius: 5px;
+		background-image: linear-gradient(
+			to left,
+			#e84855,
+			#f0667c,
+			#f384a0,
+			#f2a0bd,
+			#efbcd5
+		);
+		transition: opacity 0.5s linear;
+		z-index: -1;
+		opacity: 0;
+	}
+	&:hover::before {
+		opacity: 1;
+	}
+`;
+
+const Title = styled.h3`
+	text-align: center;
+	margin: 1rem 0;
+`;
+
+const Form = styled.form`
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #efbcd5;
+	border-radius: 20px;
+	margin: 0 1rem;
+`;
+
+const Label = styled.div`
+	margin-top: 0.5rem;
+`;
+
+const Input = styled.input`
+	width: 15rem;
+	padding: 0.4rem;
+	border: none;
+	border-radius: 5px;
+
+	&:focus {
+		outline: 1px solid #e84855;
+	}
+
+	&::placeholder {
+		color: rgb(191, 191, 191);
+	}
+
+	&:required:invalid::-webkit-datetime-edit {
+		color: rgb(191, 191, 191);
+	}
+
+	/* &:focus::-webkit-datetime-edit {
+		color: black !important;
+	} */
+`;
 
 const TransactionForm = () => {
 	const [formData, setFormData] = useState({
@@ -28,6 +123,8 @@ const TransactionForm = () => {
 	};
 
 	const onChangeHandler = (event) => {
+		console.log(event.target.name);
+		console.log(event.target);
 		setFormData((prevData) => ({
 			...prevData,
 			[event.target.name]: event.target.value,
@@ -35,10 +132,11 @@ const TransactionForm = () => {
 	};
 
 	return (
-		<form onSubmit={submitHandler}>
+		<Form onSubmit={submitHandler}>
+			<Title>Transaction Form</Title>
 			<div>
-				<label htmlFor="transactionAmount">Amount : </label>
-				<input
+				<Label htmlFor="transactionAmount">Amount</Label>
+				<Input
 					required
 					type="number"
 					name="amount"
@@ -51,8 +149,8 @@ const TransactionForm = () => {
 				/>
 			</div>
 			<div>
-				<label htmlFor="transactionDescription">Description : </label>
-				<input
+				<Label htmlFor="transactionDescription">Description</Label>
+				<Input
 					required
 					type="text"
 					name="description"
@@ -64,8 +162,8 @@ const TransactionForm = () => {
 				/>
 			</div>
 			<div>
-				<label htmlFor="transactionDate">Date : </label>
-				<input
+				<Label htmlFor="transactionDate">Date</Label>
+				<Input
 					required
 					type="date"
 					name="date"
@@ -75,8 +173,9 @@ const TransactionForm = () => {
 					onChange={onChangeHandler}
 				/>
 			</div>
-			<button>Submit</button>
-		</form>
+
+			<Button>Submit</Button>
+		</Form>
 	);
 };
 export default TransactionForm;
