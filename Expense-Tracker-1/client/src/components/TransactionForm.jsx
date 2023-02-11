@@ -12,11 +12,11 @@ const TransactionForm = () => {
 		event.preventDefault();
 
 		// Reset Form Data on Submission
-		// setFormData({
-		// 	amount: "",
-		// 	description: "",
-		// 	date: "",
-		// });
+		setFormData({
+			amount: "",
+			description: "",
+			date: "",
+		});
 
 		console.log(formData);
 		try {
