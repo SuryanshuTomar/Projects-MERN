@@ -47,7 +47,7 @@ export const popularProducts = [
 	},
 	{
 		id: 2,
-		img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+		img: "https://images.pexels.com/photos/4464822/pexels-photo-4464822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 	{
 		id: 3,
@@ -55,7 +55,7 @@ export const popularProducts = [
 	},
 	{
 		id: 4,
-		img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+		img: "https://images.pexels.com/photos/15455223/pexels-photo-15455223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 	{
 		id: 5,
@@ -67,10 +67,18 @@ export const popularProducts = [
 	},
 	{
 		id: 7,
-		img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+		img: "https://images.pexels.com/photos/13164432/pexels-photo-13164432.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 	{
 		id: 8,
 		img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+	},
+	{
+		id: 9,
+		img: "https://images.pexels.com/photos/13176686/pexels-photo-13176686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+	},
+	{
+		id: 10,
+		img: "https://images.pexels.com/photos/15283339/pexels-photo-15283339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 ];
