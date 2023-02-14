@@ -3,12 +3,15 @@ require("dotenv").config();
 const express = require("express");
 const { connectDb } = require("./DB/mongodb");
 
+// file imports
 const userRouter = require("./routes/users.route");
 
 // get instances
 const app = express();
 
 // third party middlewares
+app.use(cors());
+app.use(express.json());
 
 // routes
 app.get("/", (req, res) => {
