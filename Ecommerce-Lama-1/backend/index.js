@@ -20,8 +20,8 @@ app.get("/", (req, res) => {
 
 // not found
 app.get("*", (req, res) => {
-	res.status(200).json({
-		status: "Success",
+	res.status(404).json({
+		status: "Failed",
 		message: "Route does not exist!",
 	});
 });
