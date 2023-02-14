@@ -6,6 +6,26 @@ const { connectDb } = require("./DB/mongodb");
 // get instances
 const app = express();
 
+// third party middlewares
+
+// routes
+app.get("/", (req, res) => {
+	res.status(200).json({
+		status: "Success",
+		message: "Welcome to the Ecommerce API",
+	});
+});
+
+// app middlewares
+
+// not found
+app.get("*", (req, res) => {
+	res.status(200).json({
+		status: "Success",
+		message: "Route does not exist!",
+	});
+});
+
 // start server
 const startServer = async () => {
 	// if we are connected successfully then start the server
