@@ -1,9 +1,11 @@
 // imports
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const { connectDb } = require("./DB/mongodb");
 
 // file imports
+const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/users.route");
 
 // get instances
@@ -22,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // app middlewares
+app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 
 // not found
