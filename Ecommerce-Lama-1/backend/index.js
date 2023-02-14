@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const { connectDb } = require("./DB/mongodb");
 
+const userRouter = require("./routes/users.route");
+
 // get instances
 const app = express();
 
@@ -17,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 // app middlewares
+app.use("/api/user", userRouter);
 
 // not found
 app.get("*", (req, res) => {
