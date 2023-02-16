@@ -7,6 +7,7 @@ const { connectDb } = require("./DB/mongodb");
 // file imports
 const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/users.route");
+const productRouter = require("./routes/product.route");
 
 // get instances
 const app = express();
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
 
 // app middlewares
 app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
 // not found
 app.get("*", (req, res) => {
