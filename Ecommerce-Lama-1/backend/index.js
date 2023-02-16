@@ -10,6 +10,7 @@ const userRouter = require("./routes/users.route");
 const productRouter = require("./routes/product.route");
 const orderRouter = require("./routes/order.route");
 const cartRouter = require("./routes/cart.route");
+const stripeRouter = require("./routes/stripe.route");
 
 // get instances
 const app = express();
@@ -32,6 +33,7 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/carts", cartRouter);
+app.use("/api/checkout", stripeRouter);
 
 // not found
 app.get("*", (req, res) => {
