@@ -76,6 +76,11 @@ userSchema.statics.login = async function (email, password) {
 	return user;
 };
 
+// another way to add a static for Signup Method
+// userSchema.static("login", async function(email, password){
+// 	// write logic here
+// })
+
 // Create a model from the userSchema
 const model = mongoose.model("User", userSchema);
 
